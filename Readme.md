@@ -1,7 +1,13 @@
 # npm-which
 
 ### Locate a program or locally installed node module's executable
+
+Use `npm-which` to locate executables which may be installed in the
+local 'node_modules/.bin', or in a parent 'node_modules/.bin' directory.
+
 `npm-which` runs in the context of an npm lifecycle script with its npm-modified PATH.
+
+i.e. if you install a module that has an executable script using npm install, that module's executable will be picked up by `npm-which` from anywhere in the ./node_modules tree.
 
 ## Usage
 
@@ -9,6 +15,8 @@
 > npm-which tape
 /Users/timoxley/Projects/npm-which/node_modules/.bin/tape
 ```
+
+This is the equivalent of running an npm script with the body: `which tape`.
 
 ### Example
 
