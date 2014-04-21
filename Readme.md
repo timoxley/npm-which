@@ -1,6 +1,6 @@
 # npm-which
 
-### Locate a program or locally installed node module's executable
+### Locate a program or locally installed node module executable
 
 Use `npm-which` to locate executables which may be installed in the
 local 'node_modules/.bin', or in a parent 'node_modules/.bin' directory.
@@ -9,7 +9,15 @@ local 'node_modules/.bin', or in a parent 'node_modules/.bin' directory.
 
 i.e. if you install a module that has an executable script using npm install, that module's executable will be picked up by `npm-which` from anywhere in the ./node_modules tree.
 
+## Installation
+
+```bash
+> npm install -g npm-which
+```
+
 ## Usage
+
+### Command Line
 
 ```bash
 > npm-which tape
@@ -43,6 +51,39 @@ found
 # npm-which finds locally installed tape :)
 > npm-which tape
 /Users/timoxley/Projects/npm-which/node_modules/.bin/tape
+```
+
+### Programmatic
+
+#### Asynchronous
+
+```js
+var which = require('npm-which')
+which('tape', function(err, pathToTape) {
+  if (err) return console.error(err.message)
+  console.log(pathToTape) // /Users/.../node_modules/.bin/tape
+})
+```
+
+#### Synchronous
+
+```js
+var which = require('npm-which')
+var pathToTape = which.sync('tape')
+console.log(pathToTape) // /Users/.../node_modules/.bin/tape
+```
+
+#### Options
+
+Both async and sync versions take an optional options object:
+
+* Set `options.env` if you wish to use something other than `process.env` (the default)
+* Set `options.cwd` if you wish to use something other than `process.cwd()` (the default)
+
+```js
+which('tape', {cwd: '/some/other/path'}, function() {
+  // ...
+})
 ```
 
 ## Why
