@@ -1,0 +1,21 @@
+{
+  "name": "npm-which",
+  "version": "1.0.0",
+  "description": "which(1) with executables from npm modules.",
+  "main": "index.js",
+  "bin": "bin/npm-which.js",
+  "scripts": {
+    "test": "faucet"
+  },
+  "author": "Tim Oxley",
+  "license": "MIT",
+  "dependencies": {
+    "commander": "^2.2.0",
+    "npm-path": "^1.0.0",
+    "which": "^1.0.5"
+  },
+  "devDependencies": {
+    "faucet": "0.0.1",
+    "tape": "^2.12.3"
+  }
+}
