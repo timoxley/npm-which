@@ -41,3 +41,10 @@ test('includes all .bin dirs in all parent node_modules folders', function(t) {
   t.end()
 })
 
+test('does not mutate PATH', function(t) {
+  var before = process.env.PATH
+  var level1Bin = npmWhich.sync('level1', {env: {PATH: binPath[0]}})
+  var after = process.env.PATH
+  t.deepEqual(before, after)
+  t.end()
+})
