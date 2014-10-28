@@ -1,6 +1,6 @@
 {
   "name": "npm-which",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "description": "Locate a program or locally installed node module's executable",
   "main": "index.js",
   "bin": {
