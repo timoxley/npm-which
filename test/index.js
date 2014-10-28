@@ -48,3 +48,13 @@ test('does not mutate PATH', function(t) {
   t.deepEqual(before, after)
   t.end()
 })
+
+test('does not mutate PATH after failed find', function(t) {
+  var before = process.env.PATH
+  t.throws(function() {
+    var level1Bin = npmWhich.sync('asdasd', {env: {PATH: binPath[0]}})
+  })
+  var after = process.env.PATH
+  t.deepEqual(before, after)
+  t.end()
+})

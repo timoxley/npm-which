@@ -23,10 +23,18 @@ module.exports.sync = function(cmd, options) {
   options = options || {}
   options.cwd = options.cwd || process.cwd()
   options.env = options.env || process.env
-  var oldPath = process.env[npmPath.PATH]
-  var newPath = npmPath.getSync(options)
-  process.env[npmPath.PATH] = newPath
-  var result = which.sync(cmd)
-  process.env[npmPath.PATH] = oldPath
+  var err = null
+  try {
+    var oldPath = process.env[npmPath.PATH]
+    var newPath = npmPath.getSync(options)
+    process.env[npmPath.PATH] = newPath
+    var result = which.sync(cmd)
+    return result
+  } catch(e) {
+    err = e
+  } finally {
+    process.env[npmPath.PATH] = oldPath
+    if (err) throw err
+  }
   return result
 }
