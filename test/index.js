@@ -41,7 +41,7 @@ test('includes all .bin dirs in all parent node_modules folders', function(t) {
   t.end()
 })
 
-test('does not mutate PATH', function(t) {
+test('which.sync does not mutate PATH', function(t) {
   var before = process.env.PATH
   var level1Bin = npmWhich.sync('level1', {env: {PATH: binPath[0]}})
   var after = process.env.PATH
@@ -49,7 +49,7 @@ test('does not mutate PATH', function(t) {
   t.end()
 })
 
-test('does not mutate PATH after failed find', function(t) {
+test('which.sync does not mutate PATH after failed find', function(t) {
   var before = process.env.PATH
   t.throws(function() {
     var level1Bin = npmWhich.sync('asdasd', {env: {PATH: binPath[0]}})
@@ -57,4 +57,57 @@ test('does not mutate PATH after failed find', function(t) {
   var after = process.env.PATH
   t.deepEqual(before, after)
   t.end()
+})
+
+test('which does not mutate PATH', function(t) {
+  var before = process.env.PATH
+  var level1Bin = npmWhich('level1', {env: {PATH: binPath[0]}}, function(err) {
+    t.ifError(err)
+    var after = process.env.PATH
+    t.deepEqual(before, after)
+    t.end()
+  })
+})
+
+test('which does not mutate PATH after failed find', function(t) {
+  var before = process.env.PATH
+  var level1Bin = npmWhich('asdasd', {cwd: 'asdasdb/jhbhj'}, function(err) {
+    t.ok(err)
+    var after = process.env.PATH
+    t.deepEqual(before, after)
+    t.end()
+  })
+})
+
+test('can find path with bad cwd', function(t) {
+  var before = process.env.PATH
+  var level1Bin = npmWhich('node', {cwd: '/asdasdb/jhbhj'}, function(err, path) {
+    t.ifError(err)
+    t.ok(path)
+    t.equal(path.split('/').pop(), 'node')
+    var after = process.env.PATH
+    t.deepEqual(before, after)
+    t.end()
+  })
+})
+
+test('which does not mutate PATH with bad cmd & cwd', function(t) {
+  var before = process.env.PATH
+  var level1Bin = npmWhich('asdasd', {cwd: 'asdasdb/jhbhj'}, function(err) {
+    t.ok(err)
+    var after = process.env.PATH
+    t.deepEqual(before, after)
+    t.end()
+  })
+})
+
+test('which does not mutate PATH with bad cwd/cmd on "windows"', function(t) {
+  process.platform = "win32"
+  var before = process.env.PATH
+  var level1Bin = npmWhich('asdasd', {cwd: 'asdasdb/jhbhj'}, function(err) {
+    t.ok(err)
+    var after = process.env.PATH
+    t.deepEqual(before, after)
+    t.end()
+  })
 })
