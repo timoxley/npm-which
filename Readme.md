@@ -2,6 +2,8 @@
 
 ### Locate a program or locally installed node module executable
 
+[![Build Status](https://travis-ci.org/timoxley/npm-which.svg?branch=master)](https://travis-ci.org/timoxley/npm-which)
+
 Use `npm-which` to locate executables which may be installed in the
 local 'node_modules/.bin', or in a parent 'node_modules/.bin' directory.
 
@@ -54,6 +56,10 @@ found
 ```
 
 ### Programmatic
+
+`npm-which` will find executables relative to `process.cwd()`, not
+`__dirname`! You may want to explicitly set the cwd via the `cwd`
+config (see Options below).
 
 #### Asynchronous
 
