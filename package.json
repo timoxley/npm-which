@@ -7,7 +7,7 @@
     "npm-which": "bin/npm-which.js"
   },
   "scripts": {
-    "test": "faucet"
+    "test": "node test/index.js | tap-spec"
   },
   "author": "Tim Oxley",
   "license": "MIT",
@@ -17,8 +17,8 @@
     "which": "^1.0.5"
   },
   "devDependencies": {
-    "faucet": "0.0.1",
-    "tape": "^2.12.3"
+    "tap-spec": "^2.1.0",
+    "tape": "^3.0.3"
   },
   "directories": {
     "test": "test"
