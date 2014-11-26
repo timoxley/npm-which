@@ -101,16 +101,19 @@ test('which does not mutate PATH with bad cmd & cwd', function(t) {
   })
 })
 
-test('which does not mutate PATH with bad cwd/cmd on "windows"', function(t) {
-  var actualPlatform = process.platform
-  process.platform = "win32"
-  var before = process.env.PATH
-  npmWhich('asdasd', {cwd: 'asdasdb/jhbhj'}, function(err) {
-    process.platform = actualPlatform
-    t.ok(err)
-    var after = process.env.PATH
-    t.deepEqual(before, after)
-    t.end()
+if (process.version.indexOf('v0.10') !== -1) {
+  // can't test this on 0.11 as process.platform is (rightfully) read-only
+  test('which does not mutate PATH with bad cwd/cmd on "windows"', function(t) {
+    var actualPlatform = process.platform
+    process.platform = "win32"
+    var before = process.env.PATH
+    npmWhich('asdasd', {cwd: 'asdasdb/jhbhj'}, function(err) {
+      process.platform = actualPlatform
+      t.ok(err)
+      var after = process.env.PATH
+      t.deepEqual(before, after)
+      t.end()
+    })
   })
-})
+}
 
