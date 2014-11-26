@@ -181,12 +181,6 @@ test('which does not mutate PATH with bad cwd/cmd on "windows"', function(t) {
   })
 })
 
-//test('which.sync on default export will continue to work', function(t) {
-  //var level1Bin = npmWhich.sync('level1', {cwd: LEVEL[0]})
-  //t.equal(level1Bin, join(BINPATH_FOR_LEVEL[0], 'level1'), 'got level1 path')
-  //t.end()
-//})
-
 test('which.sync on default export will error without cwd', function(t) {
   t.throws(function() {
     npmWhich.sync('level1')
@@ -194,12 +188,5 @@ test('which.sync on default export will error without cwd', function(t) {
   t.end()
 })
 
+// Ensure old 1.0.0 tests function, except for the breakages.
 require('./1.0.0-interface')
-
-//test('which on default export will continue to work', function(t) {
-  //npmWhich('level1', {cwd: LEVEL[0]}, function(err, level1Bin) {
-    //t.ifError(err)
-    //t.equal(level1Bin, join(BINPATH_FOR_LEVEL[0], 'level1'), 'got level1 path')
-    //t.end()
-  //})
-//})
