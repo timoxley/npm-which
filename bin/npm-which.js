@@ -19,7 +19,7 @@ var cmd = program.args[0]
 
 if (program.silent) {
   try {
-    npmWhich.sync(cmd)
+    npmWhich(process.cwd()).sync(cmd)
     process.exit(0)
   } catch (e) {
     if (!e.message.match('not found:')) throw e
@@ -28,7 +28,7 @@ if (program.silent) {
 }
 
 try {
-  console.log(npmWhich.sync(cmd))
+  console.log(npmWhich(process.cwd()).sync(cmd))
 } catch (e) {
   if (!e.message.match('not found:')) throw e
   console.error('%s not found', cmd)

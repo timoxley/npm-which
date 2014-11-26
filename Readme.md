@@ -19,6 +19,43 @@ i.e. if you install a module that has an executable script using npm install, th
 
 ## Usage
 
+### Programmatic
+
+`npm-which` will find executables relative to the cwd you supply.
+The cwd is required in order to be explicit and reduce confusion when
+things that should be found are not.
+
+#### Asynchronous
+
+```js
+var which = require('npm-which')(process.cwd()) // remember to supply cwd
+which('tape', function(err, pathToTape) {
+  if (err) return console.error(err.message)
+  console.log(pathToTape) // /Users/.../node_modules/.bin/tape
+})
+```
+
+#### Synchronous
+
+```js
+var which = require('npm-which')(__dirname) // __dirname often good enough
+var pathToTape = which.sync('tape')
+console.log(pathToTape) // /Users/.../node_modules/.bin/tape
+```
+
+#### Options
+
+Both async and sync versions take an optional options object:
+
+* Set `options.env` if you wish to use something other than `process.env` (the default)
+* Set `options.cwd` to supply the cwd as a named argument. Mainly for semi-backwards compatibility with npm-which 1.0.0.
+
+```js
+which('tape', {cwd: '/some/other/path'}, function() {
+  // ...
+})
+```
+
 ### Command Line
 
 ```bash
@@ -53,43 +90,6 @@ found
 # npm-which finds locally installed tape :)
 > npm-which tape
 /Users/timoxley/Projects/npm-which/node_modules/.bin/tape
-```
-
-### Programmatic
-
-`npm-which` will find executables relative to `process.cwd()`, not
-`__dirname`! You may want to explicitly set the cwd via the `cwd`
-config (see Options below).
-
-#### Asynchronous
-
-```js
-var which = require('npm-which')
-which('tape', function(err, pathToTape) {
-  if (err) return console.error(err.message)
-  console.log(pathToTape) // /Users/.../node_modules/.bin/tape
-})
-```
-
-#### Synchronous
-
-```js
-var which = require('npm-which')
-var pathToTape = which.sync('tape')
-console.log(pathToTape) // /Users/.../node_modules/.bin/tape
-```
-
-#### Options
-
-Both async and sync versions take an optional options object:
-
-* Set `options.env` if you wish to use something other than `process.env` (the default)
-* Set `options.cwd` if you wish to use something other than `process.cwd()` (the default)
-
-```js
-which('tape', {cwd: '/some/other/path'}, function() {
-  // ...
-})
 ```
 
 ## Why
