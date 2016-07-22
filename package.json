@@ -16,7 +16,7 @@
   },
   "dependencies": {
     "commander": "^2.9.0",
-    "npm-path": "^2.0.1",
+    "npm-path": "^2.0.2",
     "which": "^1.2.10"
   },
   "devDependencies": {
