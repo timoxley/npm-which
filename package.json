@@ -11,14 +11,17 @@
   },
   "author": "Tim Oxley",
   "license": "MIT",
+  "engines": {
+    "node": ">=4.2.0"
+  },
   "dependencies": {
-    "commander": "^2.2.0",
-    "npm-path": "^1.0.0",
-    "which": "^1.0.5"
+    "commander": "^2.9.0",
+    "npm-path": "^2.0.1",
+    "which": "^1.2.10"
   },
   "devDependencies": {
-    "tap-spec": "^2.1.0",
-    "tape": "^3.0.3"
+    "tap-spec": "^4.1.1",
+    "tape": "^4.6.0"
   },
   "directories": {
     "test": "test"
