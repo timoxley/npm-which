@@ -4,6 +4,7 @@
 
 [![Build Status](https://travis-ci.org/timoxley/npm-which.svg?branch=master)](https://travis-ci.org/timoxley/npm-which)
 
+[![NPM](https://nodei.co/npm/npm-which.png?downloads=true&downloadRank=true)](https://nodei.co/npm-dl/npm-which/)
 [![NPM](https://nodei.co/npm-dl/npm-which.png?months=3&height=3&chrome)](https://nodei.co/npm/npm-which/)
 
 Use `npm-which` to locate executables which may be installed in the
